@@ -22,7 +22,11 @@ int main() {
 			return 0;
 		}
 		if (error != 0) {
+			printf("NOK: ");
 			error_output(error);
+		}
+		else {
+			printf("OK\n");
 		}
 	}
 	return 0;
