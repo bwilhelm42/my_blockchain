@@ -22,29 +22,31 @@ int rm_node(t_node **nodes, char* cmd) {
 	}
 	if (!*nodes || (*nodes)->nid != nid) {
 		free(str_nid);
+		str_nid = NULL;
 		return NODE_DOESNT_EXIST;
 	}
 	temp = (*nodes)->next;
 	free_node(*nodes);
 	*nodes = temp;
+	free(str_nid);
 	return 0;
 }
 
 static int free_all_nodes(t_node **nodes) {
-	if (!*nodes) {
+	if (!nodes) {
 		return 0;
 	}
-	if ((*nodes)->next != NULL) {
+	if (*nodes && (*nodes)->next != NULL) {
 		free_all_nodes(&(*nodes)->next);
 	}
 	free_node(*nodes);
-	*nodes = NULL;
 	return 0;
 }
 
 static void free_node(t_node *node) {
 	free_all_blocks(node->genesis);
 	free(node);
+	node = NULL;
 }
 
 static int free_all_blocks(t_block *blocks) {
@@ -56,5 +58,6 @@ static int free_all_blocks(t_block *blocks) {
 		blocks->bid = NULL;
 	}
 	free(blocks);
+	blocks = NULL;
 	return 0;
 }

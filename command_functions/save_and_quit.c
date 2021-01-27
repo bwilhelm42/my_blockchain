@@ -2,6 +2,7 @@
 
 int save_and_quit(t_node **nodes) {
 	t_block *blocks;
+	t_node **head = nodes;
 	int fd;
 	char *buf;
 
@@ -24,6 +25,8 @@ int save_and_quit(t_node **nodes) {
 	}
 	free(buf);
 	close(fd);
-	rm_node(nodes, "rm node *");
+	if (*head) {
+		rm_node(head, "rm node *");
+	}
 	return 0;
 }

@@ -2,8 +2,11 @@
 
 int add_node(t_node **nodes, char* cmd) {
 	int nid;
+	char* str_nid;
 	
-	nid = my_atoi(get_word(cmd, 3));
+	str_nid = get_word(cmd, 3);
+	nid = my_atoi(str_nid);
+	free(str_nid);
 	if (nid == 0) {
 		return COMMAND_NOT_FOUND;
 	}
