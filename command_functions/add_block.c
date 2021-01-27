@@ -52,4 +52,5 @@ static int add_block_to_all_nodes(t_node **nodes, char* bid) {
 			return 0;
 		}
 	}
+	return 0;
 }

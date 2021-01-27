@@ -11,23 +11,25 @@ FILES = main get_word execute_cmd create_node append_block receive_cmd \
 		my_lib_funcs/my_strcpy my_lib_funcs/my_strrev
 
 SRCS = $(addsuffix .c,$(FILES))
-OBJS = $(notdir $(addsuffix .o,$(FILES)))
+OBJS = $(addsuffix .o,$(FILES))
+ROOT_OBJS = $(notdir $(OBJS))
+CFLAGS += -Wall -Wextra -Werror -fsanitize=address
 
-all: exec
+all : exec
 
-exec: objs
-	gcc $(FLAGS) -o $(EXEC) $(OBJS)
+exec : $(OBJS)
+	gcc $(CFLAGS) -o $(EXEC) $(ROOT_OBJS)
 
-objs:
-	gcc $(FLAGS) -c $(SRCS)
+%.o : %.c
+	gcc $(CFLAGS) -c $<
 
-debug:
-	gcc $(FLAGS) -g -o debug $(SRCS)
+debug :
+	gcc $(CFLAGS) -g -o debug $(SRCS)
 
-clean:
-	rm -rf $(OBJS)
+clean :
+	rm -rf $(ROOT_OBJS)
 
-fclean: clean
+fclean : clean
 	rm -rf $(EXEC) debug bc_backup
 
-re: fclean all
+re : fclean all

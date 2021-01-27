@@ -3,9 +3,7 @@
 static int parse_cmd(char *cmd);
 
 int execute_cmd(char* cmd, t_node **nodes) {
-	int nid;
 	int error;
-	char* bid;
 
 	switch (parse_cmd(cmd)) {
 		case ADD_NID:
@@ -41,7 +39,7 @@ int execute_cmd(char* cmd, t_node **nodes) {
 }
 
 static int parse_cmd(char *cmd) {
-	char *commands[] = {"add nid ", "add bid ", "rm nid ", "rm bid ", "ls -l", "ls", "sync", "quit"};
+	char *commands[] = {"add node ", "add block ", "rm node ", "rm block ", "ls -l", "ls", "sync", "quit"};
 
 	for (int i = 0; i < 8; i++) {
 		if (my_strncmp(cmd, commands[i], my_strlen(commands[i])) == 0) {

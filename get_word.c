@@ -3,7 +3,6 @@
 // takes a string and returns a new string containing the nth word in that string
 // memory here is allocated and needs to be freed by its caller
 char* get_word(char* str, int n) {
-	int wc;
 	int i = 0;
 	int j = 0;
 	char buf[50];

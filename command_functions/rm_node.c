@@ -7,7 +7,6 @@ static int free_all_nodes(t_node **nodes);
 int rm_node(t_node **nodes, char* cmd) {
 	char* str_nid;
 	int nid;
-	int ret;
 	t_node *temp = NULL;
 
 	str_nid = get_word(cmd, 3);
@@ -32,10 +31,14 @@ int rm_node(t_node **nodes, char* cmd) {
 }
 
 static int free_all_nodes(t_node **nodes) {
+	if (!*nodes) {
+		return 0;
+	}
 	if ((*nodes)->next != NULL) {
 		free_all_nodes(&(*nodes)->next);
 	}
 	free_node(*nodes);
+	*nodes = NULL;
 	return 0;
 }
 
@@ -50,6 +53,7 @@ static int free_all_blocks(t_block *blocks) {
 	}
 	if (blocks->bid != NULL) {
 		free(blocks->bid);
+		blocks->bid = NULL;
 	}
 	free(blocks);
 	return 0;

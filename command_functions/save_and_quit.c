@@ -24,5 +24,6 @@ int save_and_quit(t_node **nodes) {
 	}
 	free(buf);
 	close(fd);
+	rm_node(nodes, "rm node *");
 	return 0;
 }

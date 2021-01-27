@@ -19,12 +19,12 @@ int sync_nodes(t_node **nodes) {
 			head = &(*head)->next;
 		}
 	}
+	return 0;
 }
 
 static void match_blocks(t_node *a_node, t_node *b_node) {
 	t_block *a_blocks = a_node->genesis->next;
 	t_block *b_blocks;
-	int i;
 	bool duplicate;
 
 	while (a_blocks != NULL) {

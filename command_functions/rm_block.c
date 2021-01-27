@@ -10,7 +10,9 @@ int rm_block(t_node **nodes, char* cmd) {
 	bid = get_word(cmd, 3);
 	str_nid = get_word(cmd, 4);
 	while (*str_nid == '*') {
-		free_block((*nodes)->genesis, bid) != 0;
+		if (free_block((*nodes)->genesis, bid) != 0) {
+			return BLOCK_DOESNT_EXIST;
+		}
 		nodes = &(*nodes)->next;
 		if (*nodes == NULL) {
 			free(bid);
