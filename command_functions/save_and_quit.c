@@ -6,7 +6,7 @@ int save_and_quit(t_node **nodes) {
 	int fd;
 	char *buf;
 
-	fd = open("bc_backup", O_CREAT | O_TRUNC | O_WRONLY);
+	fd = open("bc_backup", O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	buf = (char*)malloc(10);
 	my_memset(buf, '\0', 10);
 	while (nodes  != NULL && *nodes != NULL) {
